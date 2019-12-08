@@ -3,7 +3,11 @@
 #
 # Before building the docker image run:
 #
+# Maven
 # mvn package -Pnative -Dquarkus.native.container-build=true
+#
+# Gradle
+# ./gradlew buildNative --docker-build=true
 #
 # Then, build the image with:
 #

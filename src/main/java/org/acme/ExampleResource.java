@@ -1,27 +1,31 @@
 package org.acme;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
-@Path("/hello")
+@Path("/welcome")
 public class ExampleResource {
 
-    @Inject
     private Service service;
 
+    public ExampleResource(Service service) {
+        this.service = service;
+    }
+
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String hello() {
+    @Path("/hello")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String helloWorld() {
         return service.hello();
     }
 
     @GET
-    @Path("/test")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String helloWorld() {
-        return service.hello();
+    @Path("/properties")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> returnValueFromApplicationProperties() {
+        return service.getListFromProperties();
     }
 }

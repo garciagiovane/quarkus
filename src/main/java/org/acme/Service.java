@@ -1,12 +1,25 @@
 package org.acme;
 
+import org.acme.properties.PropertySource;
+
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 @ApplicationScoped
 public class Service {
 
+    private PropertySource propertySource;
+
+    public Service(PropertySource propertySource) {
+        this.propertySource = propertySource;
+    }
+
     public String hello() {
-        return "Hello Quarkus";
+        return propertySource.helloMessage();
+    }
+
+    public List<String> getListFromProperties() {
+        return propertySource.listFromProperties();
     }
 
 }
