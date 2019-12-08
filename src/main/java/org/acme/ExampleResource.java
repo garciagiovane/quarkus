@@ -28,4 +28,18 @@ public class ExampleResource {
     public List<String> returnValueFromApplicationProperties() {
         return service.getListFromProperties();
     }
+
+    @GET
+    @Path("/properties-unnamed")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer returnValueFromApplicationPropertiesUnnamed() {
+        return service.getFromPropertyUnnamed();
+    }
+
+    @GET
+    @Path("/string")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getString() {
+        return service.getString();
+    }
 }
