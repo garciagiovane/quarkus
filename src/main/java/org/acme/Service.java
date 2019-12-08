@@ -22,4 +22,11 @@ public class Service {
         return propertySource.listFromProperties();
     }
 
+    public Integer getFromPropertyUnnamed() {
+        return propertySource.getInteger();
+    }
+
+    public String getString() {
+        return propertySource.getString();
+    }
 }
