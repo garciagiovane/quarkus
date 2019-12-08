@@ -14,4 +14,9 @@ public interface PropertySource {
     @ConfigProperty(name = "list")
     List<String> listFromProperties();
 
+    @ConfigProperty
+    Integer getInteger();
+
+    String getString();
+
 }
