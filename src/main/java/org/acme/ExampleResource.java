@@ -1,19 +1,17 @@
 package org.acme;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import lombok.AllArgsConstructor;
+
+import javax.validation.Valid;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/welcome")
+@AllArgsConstructor
 public class ExampleResource {
 
     private Service service;
-
-    public ExampleResource(Service service) {
-        this.service = service;
-    }
 
     @GET
     @Path("/hello")
@@ -41,5 +39,28 @@ public class ExampleResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getString() {
         return service.getString();
+    }
+
+    @POST
+    @Path("/cars")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Car getCar(@Valid Car car) {
+        car.persist();
+        return car;
+    }
+
+    @GET
+    @Path("/cars")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Car> getCars() {
+        return Car.listAll();
+    }
+
+    @GET
+    @Path("/cars/{carColor}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Car> getCarsFiltered(@PathParam("carColor") String carColor) {
+        return Car.find("color like ?1", carColor).list();
     }
 }
