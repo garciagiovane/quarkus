@@ -69,9 +69,8 @@ public class ExampleResource {
     @Path("/cars/{carColor}")
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponses(value = {
-            @APIResponse(description = "Return a cars list according to color passed", responseCode = "200", content = @Content(
-                    schema = @Schema(implementation = Car[].class)
-            ))
+            @APIResponse(description = "Return a cars list according to color passed", responseCode = "200",
+                    content = @Content(schema = @Schema(implementation = Car[].class)))
     })
     public List<Car> getCarsFiltered(@PathParam("carColor") String carColor) {
         return Car.getCarsFiltered(carColor);
