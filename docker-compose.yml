@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  quarkus-build:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.native
+    depends_on:
+      - mongo-express
+    ports:
+      - "8080:8080"
+    networks:
+      - mongo-compose-network
   mongo:
     container_name: mongo
     image: tutum/mongodb
