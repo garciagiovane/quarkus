@@ -54,14 +54,14 @@ public class ExampleResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Car getCar(@Valid Car car) {
-        return Car.saveCar(car);
+        return service.saveCar(car);
     }
 
     @GET
     @Path("/cars")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getCars() {
-        return Car.getAllCars();
+        return service.getCars();
     }
 
     @GET
@@ -72,6 +72,6 @@ public class ExampleResource {
                     content = @Content(schema = @Schema(implementation = Car[].class)))
     })
     public List<Car> getCarsFiltered(@PathParam("carColor") String carColor) {
-        return Car.getCarsFiltered(carColor);
+        return service.getCarsFiltered(carColor);
     }
 }
